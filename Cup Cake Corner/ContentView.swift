@@ -22,6 +22,12 @@ struct ContentView: View {
     @State private var results = [Result]()
     var body: some View {
         
+        AsyncImage(url: URL(string: "https://hws.dev/img/logo.png")){image in image.resizable().scaledToFit()}
+        placeholder:  {
+            Color.red
+        }
+            .frame(width: 200,height: 200)
+        
         List(results, id: \.trackId){item in
             VStack(alignment: .leading){
                 Text(item.trackName).font(.headline)
