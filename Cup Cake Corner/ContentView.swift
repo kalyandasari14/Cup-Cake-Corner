@@ -27,11 +27,23 @@ struct ContentView: View {
                     
                 }
                 
-                Section{
+                Section("How many you desire today??"){
                     HStack{
-                        Text("Quantity: \(order.quantity)")
+                        Image(systemName: "birthday.cake.fill").foregroundStyle(.pink)
+                            Text("order").font(.headline)
+                            Text("\(order.quantity) cupcakes").font(.subheadline).foregroundColor(.primary)
+                        
                         Spacer()
                         Stepper("Number of cakes You want ?? ", value: $order.quantity, in: 2...20, step: 1 ).labelsHidden()
+                    }
+                }
+                
+                Section{
+                    Toggle("any special requests", isOn: $order.specialRequestEnabled)
+                    
+                    if order.specialRequestEnabled{
+                        Toggle("do you want an add sprinkles??", isOn: $order.addSprinkles )
+                        Toggle("do you want extra frosting ??", isOn: $order.extraFrosting)
                     }
                 }
             }.navigationTitle("cupcake").navigationBarTitleDisplayMode(.automatic)
