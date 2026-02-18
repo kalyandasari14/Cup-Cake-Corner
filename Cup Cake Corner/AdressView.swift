@@ -7,12 +7,32 @@
 
 import SwiftUI
 
+
+
 struct AdressView: View {
+    
+    @Bindable var order: Order
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            Form{
+                
+                TextField("Name", text: $order.name)
+                TextField("Enter your street adress ??", text: $order.street)
+                TextField("Enter your city ??", text: $order.city)
+                TextField("zip code", text: $order.zip)
+                
+                
+                Section{
+                    NavigationLink("Check Out"){
+                        CheckOutView(order: order)
+                        
+                    }
+                }.disabled(order.hasValidAdress == false)
+            }.navigationTitle("Address details").navigationBarTitleDisplayMode(.automatic)
+        }
     }
 }
 
 #Preview {
-    AdressView()
+    AdressView(order: Order())
 }

@@ -46,6 +46,12 @@ struct ContentView: View {
                         Toggle("do you want extra frosting ??", isOn: $order.extraFrosting)
                     }
                 }
+                
+                Section{
+                    NavigationLink("Adress"){
+                        AdressView(order: order)
+                    }
+                }
             }.navigationTitle("cupcake").navigationBarTitleDisplayMode(.automatic)
         }
     }
